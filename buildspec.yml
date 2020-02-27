@@ -20,6 +20,9 @@ phases:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
       - docker push 470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:latest
+      - curl https://www.oracle.com/webfolder/technetwork/tutorials/obe/fmw/wls/12c/03-DeployApps/files/benefits.war
+      - abcd=`ls -la | grep benefits.war
+      - echo "show $abcd"
       - ssh -i "tech.pem" ubuntu@$demo 'sudo apt-get update -y'
       - ssh -i "tech.pem" ubuntu@$demo 'docker pull 470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:latest'
       - echo Writing image definitions file...
