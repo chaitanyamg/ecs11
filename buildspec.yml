@@ -10,6 +10,6 @@ phases:
       - apt-get install -y docker.io
   build:
     commands:
-      - sudo docker image build -t babu .
+      - docker image build -t babu .
       - docker push 470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:1.0
       
