@@ -10,7 +10,7 @@ phases:
       - apt-get install -y docker.io
   pre_build:
     commands:
-      - chmod 777 /var/run/docker.sock
+      - sudo chmod 777 /var/run/docker.sock
   build:
     commands:
       - docker image build -t babu .
