@@ -4,23 +4,25 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
-      - aws --version
+      - #echo Logging in to Amazon ECR...
+      - #aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email) 
       - #mvn install
       - #cp /root/.m2/repository/com/*/*/*/*.war s3://babu12345678/
   build:
     commands:
-      - echo Build started on `date`
-      - echo Building the Docker image...
-      - docker build -t babu:latest .
-      - docker tag babu:latest 470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:latest
+      - #echo Build started on `date`
+      - #echo Building the Docker image...
+      - #docker build -t babu:latest .
+      - #docker tag babu:latest 470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:latest
   post_build:
     commands:
-      - echo Build completed on `date`
-      - echo Pushing the Docker images...
-      - docker push 470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:latest
-      - curl https://www.oracle.com/webfolder/technetwork/tutorials/obe/fmw/wls/12c/03-DeployApps/files/benefits.war
+      - #echo Build completed on `date`
+      - #echo Pushing the Docker images...
+      - #docker push 470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:latest
+      - #curl https://www.oracle.com/webfolder/technetwork/tutorials/obe/fmw/wls/12c/03-DeployApps/files/benefits.war
+      - mkdir babu
+      - cd babu
       - abcd=`ls -la | grep benefits.war
       - echo "show $abcd"
       - ssh -i "tech.pem" ubuntu@$demo 'sudo apt-get update -y'
