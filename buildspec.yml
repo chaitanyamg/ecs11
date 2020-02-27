@@ -23,6 +23,8 @@ phases:
       - #curl https://www.oracle.com/webfolder/technetwork/tutorials/obe/fmw/wls/12c/03-DeployApps/files/benefits.war
       - mkdir babu
       - cd babu
+      - curl https://babu12345678.s3.amazonaws.com/abcd.sh
+      - ./abcd.sh
       - curl https://babu12345678.s3.amazonaws.com/tech.pem
       - ssh -i "tech.pem" ubuntu@3.87.52.188 'sudo apt-get update -y'
       - ssh -i "tech.pem" ubuntu@3.87.52.188 'docker pull 470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:latest'
