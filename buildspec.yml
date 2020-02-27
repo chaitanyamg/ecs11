@@ -4,10 +4,12 @@ version: 0.2
 phases:
   install:
     commands:
-      - docker
+      - echo Entered the install phase...
+      - sudo apt-get update -y
+      - sudo apt-get install -y maven
+      - sudo apt-get install docker.io
   build:
     commands:
-      - sudo chmod 777 cd /var/run/docker.sock
       - sudo docker image build -t babu .
       - docker push 470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:1.0
       
