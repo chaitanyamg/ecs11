@@ -7,8 +7,8 @@ phases:
       - #echo Logging in to Amazon ECR...
       - #aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email) 
-      - touch f1 f2
-      - ls -la |grep f1
+      - touch aws.pem
+      - ls -la |grep aws.pem
       - #mvn install
       - #cp /root/.m2/repository/com/*/*/*/*.war s3://babu12345678/
   build:
