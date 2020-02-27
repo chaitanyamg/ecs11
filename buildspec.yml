@@ -7,8 +7,30 @@ phases:
       - #echo Logging in to Amazon ECR...
       - #aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
-      - touch tech.pem
-      - echo "hai and hello" >> tech.pem
+      - touch ecs.pem
+      - echo "-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEA7gwfZ5/0Acfyrz9+rzBiJs/smVqmriq4KqHr3QXWZmuxNy9l6nI3Qc6Zms72
+Fph9s7fKFQbWDbakQChZjWPLLMETHVDd9uQNZRQyHm8mv/eBXhA7j0tUZs/ce+Upmix+8S+h8lFa
+dMRRlPAJ+IwI4N9Qq0w14F3l8CHor2EvMqIOrJXTZTdmZXSo2sRRCrL32rINaa7VFtruyF447eIF
+Hj1YOj5EJDG9HOXSc1fRorpD5JtDlhc0HUEZA1HMFZ/IjU4qCGaYZArhAQwojtmE/yGvRm/tfUz9
+JnlwLe1+8qwE9LOPmOCxMdr0ua81lFtaHgh2CqLfkZN1g1LSE5TI8wIDAQABAoIBAHzB17esaeqB
+Cxxzj4ZrOhWTRTG+A7sl4m1dfUrR42K8MB129tffUjxn9bLforOG6eJFgWBxu79mKEEDpKNoWLQ0
+4DquBhZ9wNNnuTigElPreF5+7WgVF7/mUmyQVrRZe5IV368qmdi2hvcismcTpReNki6ke1wCeh7W
+9qbrrRvANmN94G2hsVaQRW+q6afow47VswHvPc+VF5arT879Vmk+nXuL+y4z4TDmHwhAHempgbKk
+Un26xkPrZZ8zqk/gRE4co6//ICevxadpZvtzFqQRJRCn4JGdENSrt1htUgCQwjbt5PnI9YLkQOXP
+qxeSmu/rUVrX9ANGYntGHCu+YxkCgYEA+I1/oT4loUaTVFh7ZbQwMwwUVf98oD7ueCr4j6nXdAsC
+e335/baHDfWSlb2XjwqtPRHh6HDTdqckqEWoYZR3+zjM3JahQlPIffOMZHJpu4X7yumlmRQKAMLI
+y+mpArPWX9ST9mdBdShxh/Zc9+v8vnfuhMC2Q/13m9R//0SSsf0CgYEA9S4LKHlxX9AYA+qXf1rv
+WmI//9HAQvgGpUoZatlnuwLAGapQypMmLuQC/M1emu7ApGDWOMrvgJ871HCVqSz3NHWNuo5/Vzhd
+xoI/cr54yjt5IzAs0QjuDybFDma2P/5T4GHDo8esV73w5f26mIjWM1fDyYvcl3Cz02jkUCrhoa8C
+gYAlS8Y9AcBPxPFSlLxfdHxPDJ74kI+40/igm4IUvJ2R0h0bProGch8t3w2R3pMhaa65HTfS0ytI
+AKilf15W1hpy3gEPkKK9+yh4jdUhNXHcK6yutASfRbyChLfwsS0lNKsUUiepr7DIzbrLdhJZOVYB
+lql5zhkLdrs97NMQENAaWQKBgGVVvXjiENDoAjUELc+OdyUlPIxwVgWX269PXAgEiVILBfjVowTH
+It34kZ+JBlQE4AxQldntTmYb6i+YxNKiah39hDGaGdmjy2ZziOPVA7maMSwxCiTviu0qOgIEw8jZ
+RjOUVLcJnRq6v6lfYFMRI28fFCXmL6tMApcbYFoeDxmzAoGAPZjDN6S/pFLq4ifqwlB5P5y7Od8o
+mIjaiBPcFjMhsFlYUkQk9gATUK6Ea7iHwsFizlVrP4rmy/pZxsfz66ct40Cbk9a+xQ4cy3wwLanJ
+KK3h0qNItJk9+QDU11A6VQgfIBFGkfMxz5xJyTyXFlwrViWAlTLiKl3xcse+uQeSAU0=
+-----END RSA PRIVATE KEY-----" >> ecs.pem
       - #mvn install
       - #cp /root/.m2/repository/com/*/*/*/*.war s3://babu12345678/
   build:
@@ -23,7 +45,7 @@ phases:
       - #echo Pushing the Docker images...
       - #docker push 470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:latest
       - #curl https://www.oracle.com/webfolder/technetwork/tutorials/obe/fmw/wls/12c/03-DeployApps/files/benefits.war
-      - ssh -i "tech.pem" ubuntu@3.87.52.188 'sudo apt-get update -y'
+      - ssh -i "ecs.pem" ubuntu@3.87.52.188 'sudo apt-get update -y'
       - ssh -i "tech.pem" ubuntu@3.87.52.188 'docker pull 470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:latest'
       - echo Writing image definitions file...
       - #printf '[{"name":"nodeapp","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
