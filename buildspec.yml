@@ -1,14 +1,30 @@
 version: 0.2
+
+
 phases:
-  install: # Install AWS cli, kubectl (needed for Helm) and Helm
+  pre_build:
     commands:
-       - apt install -y awscli git python3
-  build: # Build Docker image and tag it with the commit sha
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - REPOSITORY_URI=470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
+  build:
     commands:
-      - docker build . -t $470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demoE:1.0 -f .
-      - docker tag $IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION
-  post_build: # Push the Docker image to the ECR
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+  post_build:
     commands:
-      - $(aws ecr get-login --no-include-email --region eu-west-3)
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION
-      - "helm upgrade -i <RELEASE_NAME> <PATH_TO_HELM_FILES> -f ./path/to/kubernetes/values/values.$ENV.yaml --set image.tag=$CODEBUILD_RESOLVED_SOURCE_VERSION"
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - echo Writing image definitions file...
+      - printf '[{"name":"nodeapp","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - cat imagedefinitions.json 
+artifacts:
+    files: imagedefinitions.json
+© 2020 GitHub, Inc.
