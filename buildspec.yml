@@ -1,0 +1,9 @@
+version: 0.2
+
+
+phases:
+  build:
+    commands:
+      - docker build -t 470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:1.0
+      - docker push 470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:1.0
+      
