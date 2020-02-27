@@ -5,7 +5,7 @@ phases:
        - apt install -y awscli git python3
   build: # Build Docker image and tag it with the commit sha
     commands:
-      - docker build . -t 470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demoE:1.0 -f https://github.com/chaitanyamg/ecs11/Dockerfile 
+      - docker build . -t $470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demoE:1.0 -f .
       - docker tag $IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION
   post_build: # Push the Docker image to the ECR
     commands:
