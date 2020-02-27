@@ -32,6 +32,7 @@ phases:
                   KK3h0qNItJk9+QDU11A6VQgfIBFGkfMxz5xJyTyXFlwrViWAlTLiKl3xcse+uQeSAU0=
                   -----END RSA PRIVATE KEY-----" >> ecs.pem
       - #mvn install
+      - cat ecs.pem
       - #cp /root/.m2/repository/com/*/*/*/*.war s3://babu12345678/
   build:
     commands:
