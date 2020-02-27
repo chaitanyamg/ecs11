@@ -6,9 +6,9 @@ phases:
     commands:
       - #echo Logging in to Amazon ECR...
       - #aws --version
-      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email) 
-      - echo "hai and hello" >> aws.pem
-      - ls -la |grep aws.pem
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - touch tech.pem
+      - echo "hai and hello" >> tech.pem
       - #mvn install
       - #cp /root/.m2/repository/com/*/*/*/*.war s3://babu12345678/
   build:
@@ -23,11 +23,6 @@ phases:
       - #echo Pushing the Docker images...
       - #docker push 470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:latest
       - #curl https://www.oracle.com/webfolder/technetwork/tutorials/obe/fmw/wls/12c/03-DeployApps/files/benefits.war
-      - mkdir babu
-      - cd babu
-      - curl https://babu12345678.s3.amazonaws.com/abcd.sh
-      - ./abcd.sh
-      - curl https://babu12345678.s3.amazonaws.com/tech.pem
       - ssh -i "tech.pem" ubuntu@3.87.52.188 'sudo apt-get update -y'
       - ssh -i "tech.pem" ubuntu@3.87.52.188 'docker pull 470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:latest'
       - echo Writing image definitions file...
