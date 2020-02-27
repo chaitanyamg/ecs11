@@ -5,8 +5,7 @@ phases:
   build:
     commands:
       - apt-get install -y docker
-      - service docker start
-      - chmod 777 cd /var/run/docker.sock.
+      - sudo chmod 777 cd /var/run/docker.sock.
       - docker build -t babu .
       - docker push 470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:1.0
       
