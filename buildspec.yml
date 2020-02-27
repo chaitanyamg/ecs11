@@ -10,11 +10,9 @@ phases:
       - apt-get install -y docker.io
       - cd /var/run/
       - chmod 777 docker.sock
-  pre_build:
-    commands:
-      - sudo chmod 777 /var/run/docker.sock
+  
   build:
     commands:
-      - docker image build -t babu .
+      - docker build -t babu .
       - docker push 470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:1.0
       
