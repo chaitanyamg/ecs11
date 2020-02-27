@@ -6,7 +6,9 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
-      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email) 
+      - mvn install
+      - cp */*.war s3://babu12345678
   build:
     commands:
       - echo Build started on `date`
@@ -18,6 +20,8 @@ phases:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
       - docker push 470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:latest
+      - ssh -i "tech.pem" ubuntu@$demo 'sudo apt-get update -y'
+      - ssh -i "tech.pem" ubuntu@$demo 'docker pull 470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:latest'
       - echo Writing image definitions file...
       - #printf '[{"name":"nodeapp","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
       - #cat imagedefinitions.json 
