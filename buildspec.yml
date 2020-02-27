@@ -7,8 +7,8 @@ phases:
       - echo Logging in to Amazon ECR...
       - aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email) 
-      - mvn install
-      - cp /root/.m2/repository/com/*/*/*/*.war s3://babu12345678/
+      - #mvn install
+      - #cp /root/.m2/repository/com/*/*/*/*.war s3://babu12345678/
   build:
     commands:
       - echo Build started on `date`
