@@ -11,7 +11,7 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - docker build -t babu:latest .
-      - docker tag babu:latest babu:$latest
+      - docker tag babu:latest 470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:latest
   post_build:
     commands:
       - echo Build completed on `date`
