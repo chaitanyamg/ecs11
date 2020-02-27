@@ -7,7 +7,7 @@ phases:
       - docker
   build:
     commands:
-      - chmod 777 /var/run/docker.sock.
+      - chmod 777 cd /var/run/docker.sock
       - docker image build -t babu .
       - docker push 470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:470727887694.dkr.ecr.us-east-1.amazonaws.com/chaitanya-demo:1.0
       
