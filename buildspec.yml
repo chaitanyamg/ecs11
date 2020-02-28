@@ -8,7 +8,7 @@ phases:
       - #aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       - #yum update -y
-      - aws ec2 run-instances --image-id ami-006bf064149e7c7e5 --count 1 --instance-type t2.micro --key-name tech  --subnet-id default --region us-east-1 --user-data shell.sh
+      - aws ec2 run-instances --image-id ami-006bf064149e7c7e5 --count 1 --instance-type t2.micro --key-name tech  --subnet-id subnet-f6aff6aa --region us-east-1 --user-data shell.sh
   build:
     commands:
       - #echo Build started on `date`
