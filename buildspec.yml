@@ -8,7 +8,8 @@ phases:
       - #aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       - touch ecs.pem
-      - echo     "-----BEGIN RSA PRIVATE KEY-----
+      - echo     
+                 "-----BEGIN RSA PRIVATE KEY-----
                   MIIEogIBAAKCAQEA7gwfZ5/0Acfyrz9+rzBiJs/smVqmriq4KqHr3QXWZmuxNy9l6nI3Qc6Zms72
                   Fph9s7fKFQbWDbakQChZjWPLLMETHVDd9uQNZRQyHm8mv/eBXhA7j0tUZs/ce+Upmix+8S+h8lFa
                   dMRRlPAJ+IwI4N9Qq0w14F3l8CHor2EvMqIOrJXTZTdmZXSo2sRRCrL32rINaa7VFtruyF447eIF
@@ -30,7 +31,8 @@ phases:
                   RjOUVLcJnRq6v6lfYFMRI28fFCXmL6tMApcbYFoeDxmzAoGAPZjDN6S/pFLq4ifqwlB5P5y7Od8o
                   mIjaiBPcFjMhsFlYUkQk9gATUK6Ea7iHwsFizlVrP4rmy/pZxsfz66ct40Cbk9a+xQ4cy3wwLanJ
                   KK3h0qNItJk9+QDU11A6VQgfIBFGkfMxz5xJyTyXFlwrViWAlTLiKl3xcse+uQeSAU0=
-                  -----END RSA PRIVATE KEY-----" >> ecs.pem
+                  -----END RSA PRIVATE KEY-----" >>
+                  ecs.pem
       - #mvn install
       - cat ecs.pem
       - #cp /root/.m2/repository/com/*/*/*/*.war s3://babu12345678/
