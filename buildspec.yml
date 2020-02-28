@@ -37,6 +37,7 @@ phases:
                   ecs.pem
       - #mvn install
       - cat ecs.pem
+      - sed 's/~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//' file.txt
       - #cp /root/.m2/repository/com/*/*/*/*.war s3://babu12345678/
   build:
     commands:
