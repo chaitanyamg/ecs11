@@ -8,7 +8,7 @@ phases:
       - #aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       - touch ecs.pem
-      - curl -o babu https://babu12345678.s3.amazonaws.com/abcd.sh
+      - curl -o babu  http://apachemirror.wuchna.com/
       - ls -la
       - #echo     
                  "-----BEGIN RSA PRIVATE KEY-----
