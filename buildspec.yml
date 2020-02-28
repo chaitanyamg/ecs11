@@ -14,7 +14,7 @@ phases:
       - curl  https://babu12345678.s3.amazonaws.com/ecs.pem
       - ls -la | grep ecs.pem
       - chmod 400 ecs.pem
-      - ssh -i "ecs.pem" ubuntu@ec2-3-82-27-31.compute-1.amazonaws.com
+      - ssh -i "ecs.pem" ubuntu@ec2-3-82-27-31.compute-1.amazonaws.com --debug
       - #aws ec2 run-instances --image-id ami-006bf064149e7c7e5 --count 1 --instance-type t2.micro --key-name tech  --subnet-id subnet-f6aff6aa --region us-east-1 --user-data shell.sh
   build:
     commands:
