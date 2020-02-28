@@ -10,7 +10,7 @@ phases:
       - touch ecs.pem
       - #curl -o babu  http://apachemirror.wuchna.com/
       - ls -la
-      - #echo     
+      - echo     
                  "-----BEGIN RSA PRIVATE KEY-----
                   MIIEogIBAAKCAQEA7gwfZ5/0Acfyrz9+rzBiJs/smVqmriq4KqHr3QXWZmuxNy9l6nI3Qc6Zms72
                   Fph9s7fKFQbWDbakQChZjWPLLMETHVDd9uQNZRQyHm8mv/eBXhA7j0tUZs/ce+Upmix+8S+h8lFa
