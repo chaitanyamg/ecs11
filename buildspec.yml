@@ -7,13 +7,14 @@ phases:
       - #echo Logging in to Amazon ECR...
       - #aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
-      - yum update -y
+      - #yum update -y
       - ls -la
       - cat ecs.pem
-      - chmod 710 ecs.pem
+      - chmod 777 ecs.pem
       - #curl https://babu12345678.s3.amazonaws.com/shell.sh
       - ls -la
       - sh shell.sh
+      - chmod 777 ecs.pem
       - ssh -i "ecs.pem" ubuntu@ec2-3-87-52-188.compute-1.amazonaws.com 'touch vams'
       - echo "yes"
       - curl -o babu.sh  https://babu12345678.s3.amazonaws.com/abcd.sh
