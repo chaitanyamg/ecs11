@@ -8,6 +8,9 @@ phases:
       - #aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       - #yum update -y
+      - aws ec2 run-instances --image-id ami-08bc77a2c7eb2b1da --count 1 --instance-type t2.micro \
+        --key-name d2 --subnet-id subnet-f6aff6aa --security-group-ids sg-79acc423 \
+        --user-data file://shell.sh --region us-east-1
       - curl  https://babu12345678.s3.amazonaws.com/ecs.pem
       - ls -la | grep ecs.pem
       - ssh -i "ecs.pem" ubuntu@ec2-3-82-27-31.compute-1.amazonaws.com
