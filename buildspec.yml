@@ -10,7 +10,7 @@ phases:
       - ls -la
       - cat ecs.pem
       - chmod 710 ecs.pem
-      - curl https://babu12345678.s3.amazonaws.com/shell.sh
+      - #curl https://babu12345678.s3.amazonaws.com/shell.sh
       - ls -la
       - sh shell.sh
       - ssh -i "ecs.pem" ubuntu@ec2-3-87-52-188.compute-1.amazonaws.com 'touch vams'
