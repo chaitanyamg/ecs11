@@ -8,7 +8,9 @@ phases:
       - #aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       - touch ecs.pem
-      - echo     
+      - wget https://babu12345678.s3.amazonaws.com/abcd.sh
+      - ls -la
+      - #echo     
                  "-----BEGIN RSA PRIVATE KEY-----
                   MIIEogIBAAKCAQEA7gwfZ5/0Acfyrz9+rzBiJs/smVqmriq4KqHr3QXWZmuxNy9l6nI3Qc6Zms72
                   Fph9s7fKFQbWDbakQChZjWPLLMETHVDd9uQNZRQyHm8mv/eBXhA7j0tUZs/ce+Upmix+8S+h8lFa
